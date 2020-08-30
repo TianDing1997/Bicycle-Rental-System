@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block page_content %}
+  <p style="font-size:40px;color:black;">公路车</p>
+    {% for bike in bike %}
+      {% if bike.type=='公路车' %}
+        <p id="photo1">
+          <img src="/static{{ bike.image }}" width="200" height="200"><br/>
+          <a href="{{ url_for('.bike_rent', id=bike.id) }}">
+              <span class="label label-primary">租车</span>
+          </a>
+        </p>
+      {% endif %}
+    {% endfor %}
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <p style="font-size:40px;color:black">山地车</p>
+    {% for bike in bike %}
+      {% if bike.type=='山地车' %}
+        <p id="photo2">
+          <img src="/static{{ bike.image }}" width="200" height="200"><br/>
+          <a href="{{ url_for('.bike_rent', id=bike.id) }}">
+              <span class="label label-primary">租车</span>
+          </a>
+        </p>
+      {% endif %}
+    {% endfor %}
+{% endblock %}

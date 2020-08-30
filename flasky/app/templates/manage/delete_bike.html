@@ -1,0 +1,22 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container" style="color:Green">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warninng" >
+      <button style="color:Red" type="button" class="close" data-dismiss="alert">&times;</button>
+      {{ message }}
+    <div>
+    {% endfor %}
+
+    {% block page_content %}
+    <div class="page-header" style="color: Black">
+        <h1 style="font-size:150%">删除</h1>
+    </div>
+    <div style="color: Black">
+        {{ wtf.quick_form(form) }}
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Bike Rent{% endblock %}
+
+{% block page_content %}
+
+<table class="table table-hover">
+   <caption style="font-size:150%; color:black">所有租赁<hr/></caption>
+   <thead>
+      <tr>
+        <th>租车人id</th>
+        <th>单车id</th>
+        <th>租车时间</th>
+        <th>还车时间</th>
+        <th>还车/支付</th>
+      </tr>
+   </thead>
+   <tbody>
+     {% for rent in rent %}
+      <tr>
+         <td>{{ rent.renter_id }}</td>
+         <td>{{ rent.rented_bike_id }}</td>
+         <td>{{ moment(rent.rent_time).format('LLL') }}</td>
+         {% if rent.return_time %}
+         <td>{{ moment(rent.return_time).format('LLL') }}</td>
+         <td>
+          <a href="{{ url_for('.bike_return', id=rent.rent_id) }}">
+          <span class="label label-primary">支付</span>
+          </a>
+         </td>
+         {% else %}
+         <td>尚未还车</td>
+         <td>
+          <a href="{{ url_for('.bike_return', id=rent.rent_id) }}">
+          <span class="label label-primary">还车</span>
+          </a>
+         </td>
+         {% endif %}
+      </tr>
+    {% endfor %}
+   </tbody>
+</table>
+{% endblock %}

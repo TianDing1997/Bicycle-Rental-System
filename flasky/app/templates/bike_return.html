@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Bike Rent{% endblock %}
+
+{% block content %}
+{% block page_content %}
+<table class="table table-hover">
+   <caption style="font-size:150%; color:black">支付<hr/></caption>
+   <thead>
+      <tr>
+        <th>租车人id</th>
+        <th>单车id</th>
+        <th>租车时间</th>
+        <th>还车时间</th>
+        <th>支付费用</th>
+        <th>支付</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>{{ rent.renter_id }}</td>
+         <td>{{ rent.rented_bike_id }}</td>
+         <td>{{ moment(rent.rent_time).format('LLL') }}</td>
+         <td>{{ moment(rent.return_time).format('LLL') }}</td>
+         <td>{{ rent.rent_price }}</td>
+         <td><a href="{{ url_for('.bike_pay', id=rent.rent_id) }}">
+              <span class="label label-primary">支付</span>
+             </a>
+        </td>
+      </tr>
+   </tbody></table>
+{% endblock %}
+{% endblock %}

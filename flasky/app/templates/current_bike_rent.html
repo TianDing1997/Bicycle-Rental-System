@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Bike Rent{% endblock %}
+
+{% block content %}
+{% block page_content %}
+<table class="table table-hover">
+   <caption style="font-size:150%; color:black">当前租赁<hr/></caption>
+   <thead>
+      <tr>
+         <th>租车人id</th>
+         <th>单车id</th>
+         <th>租车时间</th>
+      </tr>
+   </thead>
+   <tbody>
+     {% for rent in rent %}
+      <tr>
+         <td>{{ rent.renter_id }}</td>
+         <td>{{ rent.rented_bike_id }}</td>
+         <td>{{ moment(rent.rent_time).format('LLL') }}</td>
+      </tr>
+    {% endfor %}
+   </tbody></table>
+{% endblock %}
+{% endblock %}
